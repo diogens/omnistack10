@@ -1,12 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const routes = require("./routes");
 
 const app = express();
 const port = 3333;
 
 mongoose.connect(
-  "mongodb+srv://dioge2020:dioge2020@cluster0-awox0.mongodb.net/week10?retryWrites=true&w=majority",
+  //CRIE UM NOVO BANCO NO MONGOATLAS
+  "mongodb+srv://<USER>:<SENHA>@cluster0-awox0.mongodb.net/<BANCO>?retryWrites=true&w=majority",
   {
     useCreateIndex: true,
     useNewUrlParser: true,
@@ -14,6 +16,7 @@ mongoose.connect(
   }
 );
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
