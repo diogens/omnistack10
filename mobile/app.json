@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "Dev Radar",
     "slug": "mobile",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -24,7 +24,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.blade2.devradar"
+    },
+    "android": {
+      "package": "com.blade2.devradar"
+    },
+    "description": ""
   }
 }

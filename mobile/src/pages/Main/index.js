@@ -15,6 +15,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 import api from "../../services/api";
+import { connect, disconnect } from "../../services/socket";
 
 const Main = ({ navigation }) => {
   const [devs, setDevs] = useState([]);
@@ -47,6 +48,11 @@ const Main = ({ navigation }) => {
   async function loadDevs() {
     const { latitude, longitude } = currentRegion;
 
+    function setWebSocket() {
+      const { latitude, longitude } = currentRegion;
+      connect(latitude, longitude, techs);
+    }
+
     const response = await api.get("/search", {
       params: {
         latitude,
@@ -55,10 +61,11 @@ const Main = ({ navigation }) => {
       }
     });
 
-    console.log("Oi Brasil", response.data.dev);
-    console.log("Oi Brasil2", techs);
+    /*  console.log("Oi Brasil", response.data.dev);
+    console.log("Oi Brasil2", techs); */
 
     setDevs(response.data.dev);
+    setWebSocket();
   }
 
   function handleRegionChaged(region) {
